@@ -1,0 +1,90 @@
+https://kyberscorner.files.wordpress.com/2017/11/destiny-2-weekly-reset-summary-11-14-17-by-kyber3000-updated-meditations.png
+
+
+ECHO COMMANDS
+https://echo.xtclabs.net
+
+NADEKOBOT COMMANDS
+https://nadekobot.readthedocs.io/en/latest/Commands%20List/
+
+CHARLEMAGNE COMMANDS
+https://warmind.io/cmds
+
+
+PROPOSAL 1
+.
+
+__**ANNOUNCEMENT: House Cleaning**__
+.
+Now that I have finished my work on this server, I would like to propose to you all my next set of plans for the clan: HOUSE CLEANING. Ive noticed for a while we have a lot of inactive players and/or players who never play with the clan!! It seems this deserves some attention. SO, here is my plan:
+.
+**1)** Starting next week, I plan to follow the discord and bungie.net app closely, looking for which members have signed in recently (either in game or on the app). I will be keeping a list of those members, as they will be except to (2) below since they are still “active”.
+**2)** For all members not in the list for (1), I will create ANOTHER list, who will be subject - on all admins approval of such list - to the following private message:
+.
+.
+*“User,”
+.
+Our clan is currently doing a bit of housekeeping. As Destiny has now been out for a few months, we are aware that many of our members may no longer be playing Destiny 2.
+ .
+You are receiving this message due to inactivity in Destiny 2 and/or inactivity in the clan discord/bungie.net clan page. If it is your intention to return to Destiny, please send a reply stating so before (date 1 week after message sent).
+.
+If your reply is not received by the date stated above, you may be removed from the clan. If you see this message after the deadline, and do plan to return to Destiny 2 and would like to be a part of the clan - simply message me letting me know, and we will be happy to send you a new invite.
+
+Ex Aspera Ad Astra,*
+.
+**3)** If the deadline passes given in (2), I will go forward with removing them from the clan - but as the above message specifies, if they return to Destiny 2 (and the clan is not full) and wish to be reinvested back to the clan, I will of course d so immediately.
+.
+**4)** Once the inactive players are taken care of, I will then turn my attention to those who do not and have not participated with the clan in anyway (aka reward gluttons). I will think on this further, as these people will have to be handled more…. delicately…
+.
+**Let me know what you think in the admin-chat channel when you have time**
+.
+Bop
+.
+
+
+
+
+CREATE AUTO MESSAGE NEXT WEEK:
+.
+
+__**CURRENT WEEKS ANNOUNCEMENTS BELOW**__  :thinking: 
+
+.
+
+
+
+
+ECHO CHANGE ROLE A.R.S
+.auto &{:}(=registered?)={init} 
+use | 381500823382917143 
+{if(ischannel):
+     {role:beginner}{take:unregistered}Thank you {/user}. Your role has been changed to -> member. New channels and permissions are now available!
+ } (else) {
+   {tclear:1} That response is not recoginized here, use the register channel.
+}
+
+
+
+
+ECHO SET BYE MESSAGE
+.bye **WTF {user} LEF THE CLAN!?!?!?!?**
+{redirect:379449337119506435}
+
+
+
+
+ADMIN ANNOUCNEMNT
+@Admin
+.
+**UPDATE: Roles**
+.
+So as requested, I have created the **beginner** role and have it all set to go. **Note that for the first week, all members will receive the member role once registered, and those members who are beginners will have to be manually changed**. After next week, I will change the bots settings to auto enroll new users to the beginner role.
+.
+**All users upon arrival begin with the unregistered role, restricts them to just a few features and channels until they finish registering as detailed in information.** I did this so new members don’t become “distracted”, and are encouraged to register before doing anything else. This was very difficult - I had to create a **trigger** with the echo bot. 
+.
+Please see the updated information in section IV. Users will have to put in a special command in the hidden channel **register** in order to have their role updated, and granted full access to the server. **ITS PRETTY COOL, please check out the video below to get a perspective of what its like for a new user on arrival!!!**
+.
+vimeo.com/243489041
+.
+Bop
+.
