@@ -2,3 +2,5 @@ token.txt
 roster.csv
 settings.json
 bckps
+cogs/__pycache__
+__pycache__

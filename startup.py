@@ -107,11 +107,12 @@ async def on_member_remove(member):
         if not onoff.check('goodbye',CLNSERVERS['Ex Aspera Ad Astra']):
             return
         
-        #gamemsg = "**WTF, "+member.name+" LEFT THE CLAN!?!?!?!?**"
+        ascendedmsg = (Role_Obj(member.server.roles, 'Ascended')).mention + " :warning: \n**"+member.name
+        ascendedmsg += "** has left the clan."
         adminmsg = (Role_Obj(member.server.roles, 'Admin')).mention + " :warning: \n"+member.name
         adminmsg += " has left the clan.\nYou can remove this member from the roster "
         adminmsg += "with the command:\n** .roster remove "+member.name+"**."
-        #await bot.send_message(bot.get_channel(CHANNELS['GAMECHATCHNL']), gamemsg)
+        await bot.send_message(bot.get_channel(CHANNELS['ASCENDEDCHATCHNL']), ascendedmsg)
         await bot.send_message(bot.get_channel(CHANNELS['ADMINCHATCHNL']), adminmsg)
 
 

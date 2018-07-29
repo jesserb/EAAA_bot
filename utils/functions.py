@@ -1552,6 +1552,8 @@ def Help_Admin():
     other += '**.EAAA <__cmd category__>/__all__  __on__/__off__**\n'
     other += '*if category given, turns that command on or off. If all given, '
     other += 'turns all commands on or off.*\n'
+    other += '**.member __<<username>__**\n'
+    other += '*returns user discord information.*\n' 
     return desc, roster, radmin, announce, reg, other
 
 

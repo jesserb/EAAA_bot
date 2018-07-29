@@ -308,6 +308,46 @@ class AdministrationCog:
     
 
 
+    @commands.command(pass_context=True)
+    async def member(self, ctx, *args):
+
+        caller = ctx.message.author
+
+        # PERMS CHECK
+        if not perms.check(caller, self.lvl):
+            err = caller.mention + 'You do not have permission to use this command.'
+            await self.bot.say(err)
+            return
+
+        #BUILD USERNAME
+        arg1 = ''
+        for i in range(len(args)):
+            if i == len(args) - 1:
+                arg1 += args[i]
+            else:
+                arg1 += args[i] + ' '
+  
+        #ERROR CHECKING
+        if len(args) == 0:
+            err = ':x: '+ctx.message.author.mention + ' Command requires user as argument.'
+            await self.bot.say(err)
+            return
+            
+        if f.Member_Obj(self.bot.get_all_members(), arg1) is None:
+            err = ':x: '+ctx.message.author.mention + ', '+arg1+' is not a valid username.'
+            await self.bot.say(err)
+            return
+        
+        memb = f.Member_Obj(self.bot.get_all_members(), arg1)
+        details = '\nFor User: **'+arg1+'**\n'
+        details += '```NAME: ' + memb.name + '\n'
+        details += 'ID#:' + memb.id + '\n'
+        details += 'ACCOUNT ACTIVATED:' + str(memb.created_at) + '\n'
+        details += 'NICKNAME:' + memb.display_name + '```'
+        await self.bot.say(details)
+
+
+
     # Command that checks user activity in the last however
     # many weeks on the server, as specified by the callee.
     # callee.
