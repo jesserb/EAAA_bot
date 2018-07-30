@@ -18,22 +18,48 @@ initial_extensions = ['cogs.standard',
                       'cogs.poll']
 
 
+# determine which bot to load up
+botType = ''
+# error checking
+if len(sys.argv) > 2:
+    print('**ERROR: Too many arguments. program takes at most one.\nexiting... ... ...')
+    sys.exit()
+# hadnle argument
+if len(sys.argv) > 1:
+    botType = sys.argv[1]
+else:
+    botType = 'EAAA'
 
-bot = commands.Bot(command_prefix=">")
+# Load configs
+configFile = open('config')
+configs = configFile.readlines()
+config = {
+    'EAAA': {
+        'token': (configs[1].split()[1]).split('\n')[0],
+        'prefix': (configs[2].split()[1]).split('\n')[0],
+    }, 
+    'EAAA_tester': {
+        'token': (configs[5].split()[1]).split('\n')[0],
+        'prefix': (configs[6].split()[1]).split('\n')[0],
+    }
+}
+
+
+bot = commands.Bot(command_prefix = config[botType]['prefix'])
 bot.remove_command('help')
 
 @bot.event
 async def on_ready():
     print('\n\n\nLogged in as '+bot.user.name+' (ID:'+bot.user.id+') | Connected to '+\
           str(len(bot.servers))+' servers | Connected to '+str(len(set(bot.get_all_members())))+' users')
-    print('-------'*13)
+    print('-------'*18)
     print('Discord.py Version: {} | Python Version: {}'.format(discord.__version__, platform.python_version()))
-    print('-------'*13)
+    print('-------'*18)
     print('Use this link to invite {}:'.format(bot.user.name))
     print('https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8'.format(bot.user.id))
-    print('-------'*13)
+    print('-------'*18)
     print('Support Discord Server: https://discord.gg/FNNNgqb')
-    print('-------'*13)
+    print('-------'*18)
 
     if __name__ == '__main__':
         for extension in initial_extensions:
@@ -43,7 +69,7 @@ async def on_ready():
             except Exception as e:
                 print('issue with',extension)
                 traceback.print_exc()
-        print('Successfully logged in and booted...!')
+        print('Successfully logged in and booted...! Use prefix: "'+config[botType]['prefix']+'".\n\n')
 
 
 
@@ -118,9 +144,7 @@ async def on_member_remove(member):
 
 
 # Start your engines~~
-tokenFile = open('token.txt')
-token = tokenFile.readlines()[1].split()[1]
-bot.run(token, bot=True, reconnect=True)
+bot.run(config[botType]['token'], bot=True, reconnect=True)
 
 
 
