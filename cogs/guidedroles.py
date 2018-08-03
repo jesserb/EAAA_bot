@@ -18,6 +18,51 @@ class GuidedrolesCog:
     def __init__(self, bot):
         self.bot = bot
 
+    # SOLSTICE OF HEROES: TEMP ROLES
+    @commands.command(pass_context=True)
+    async def solsticeofheroes(self, ctx, *args):
+
+        chnl = self.bot.get_channel('474920435839139855')
+        roles = ctx.message.server.roles
+
+        # check if more than 1 arg given
+        if len(args) > 1:
+            await self.bot.say('{} command takes but one argument, either **"shattered"**, **"rekindled"**, or **"resplendent"**'.format(ctx.message.author.mention))
+
+        # check if 0 args are given
+        if len(args) < 1:
+            await self.bot.say('{} must include an argument, either **"shattered"**, **"rekindled"**, or **"resplendent"**'.format(ctx.message.author.mention))
+
+        # Check that guided role is valid
+        if f.Role_Obj(roles, args[0].lower().title()) == None:
+            await self.bot.delete_message(ctx.message)
+            await self.bot.say(':x: {} <{}> is not a valid argument for this command. argument must be **"shattered"**, **"rekindled"**, or **"resplendent"**'
+                               .format(ctx.message.author.mention,args[0].lower().title()) )
+            return
+            
+        if args[0].lower() == 'shattered':
+                role = f.Role_Obj(roles, 'Shattered')
+                await self.bot.add_roles(ctx.message.author, role)
+                msg = '\n**{} has taken on the role of {}!**'.format(ctx.message.author.mention, role.mention)
+                await self.bot.send_message(chnl, msg)
+    
+
+        if args[0].lower() == 'rekindled':
+                role = f.Role_Obj(roles, 'Rekindled')
+                await self.bot.add_roles(ctx.message.author, role)
+                msg = '\n**{} has upgraded their armor to Rekindled,\nand as such, taken on the role of {}!**'.format(ctx.message.mention, role.mention)
+                await self.bot.send_message(chnl, msg)
+    
+
+    
+
+        if args[0].lower() == 'resplendent':
+                role = f.Role_Obj(roles, 'Resplendent')
+                await self.bot.add_roles(ctx.message.author, role)
+                msg = '\n**{} has upgraded their armor to Resplendent,\nand as such, taken on the role of {}!**'.format(ctx.message.mention, role.mention)
+                await self.bot.send_message(chnl, msg)
+    
+
 
     # GUIDED ROLES COMMANDS~~~
     @commands.command(pass_context=True)
@@ -35,7 +80,6 @@ class GuidedrolesCog:
         if arg1 == '':
             await self.bot.say('Must include a valid Guided Role')
             return
-        
         
         
         # ADD GUIDED ROLE~~~~~
