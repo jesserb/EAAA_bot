@@ -18,7 +18,8 @@ class GuidedrolesCog:
     def __init__(self, bot):
         self.bot = bot
 
-    # SOLSTICE OF HEROES: TEMP ROLES
+
+    # SOLSTICE OF HEROES: TEMP ROLES FOR CURRENT EVENT
     @commands.command(pass_context=True)
     async def solsticeofheroes(self, ctx, *args):
 
@@ -26,42 +27,54 @@ class GuidedrolesCog:
         roles = ctx.message.server.roles
 
         # check if more than 1 arg given
-        if len(args) > 1:
-            await self.bot.say('{} command takes but one argument, either **"shattered"**, **"rekindled"**, or **"resplendent"**'.format(ctx.message.author.mention))
+        if len(args) > 2:
+            await self.bot.say('{} command takes but at most 2 arguments, either **"shattered"**, **"rekindled"**, or **"resplendent"**, or **"remove"** plus a valid role'
+                               .format(ctx.message.author.mention))
+            return
 
         # check if 0 args are given
         if len(args) < 1:
-            await self.bot.say('{} must include an argument, either **"shattered"**, **"rekindled"**, or **"resplendent"**'.format(ctx.message.author.mention))
+            await self.bot.say('{} must include an argument, either **"remove"** then a valid role, or **"shattered"**, **"rekindled"**, or **"resplendent"**'
+                               .format(ctx.message.author.mention))
+            return
 
         # Check that guided role is valid
-        if f.Role_Obj(roles, args[0].lower().title()) == None:
-            await self.bot.delete_message(ctx.message)
+        if args[0].lower() != 'remove' and f.Role_Obj(roles, (args[0].lower()).title()) == None:
             await self.bot.say(':x: {} <{}> is not a valid argument for this command. argument must be **"shattered"**, **"rekindled"**, or **"resplendent"**'
                                .format(ctx.message.author.mention,args[0].lower().title()) )
             return
-            
+
+        # check if shattered, then add
         if args[0].lower() == 'shattered':
                 role = f.Role_Obj(roles, 'Shattered')
                 await self.bot.add_roles(ctx.message.author, role)
                 msg = '\n**{} has taken on the role of {}!**'.format(ctx.message.author.mention, role.mention)
-                await self.bot.send_message(chnl, msg)
-    
+                # await self.bot.send_message(chnl, msg)
+                await self.bot.say(msg)
+                return
 
-        if args[0].lower() == 'rekindled':
-                role = f.Role_Obj(roles, 'Rekindled')
+        # check if rekindled or resplendent, then add
+        if args[0].lower() == 'rekindled' or args[0].lower() == 'resplendent':
+                role = f.Role_Obj(roles, (args[0].lower()).title())
                 await self.bot.add_roles(ctx.message.author, role)
-                msg = '\n**{} has upgraded their armor to Rekindled,\nand as such, taken on the role of {}!**'.format(ctx.message.mention, role.mention)
-                await self.bot.send_message(chnl, msg)
-    
+                msg = '\n**{} has upgraded their armor to {},\nand as such, taken on the role of {}!**'.format(ctx.message.author.mention, role.name, role.mention)
+                # await self.bot.send_message(chnl, msg)
+                await self.bot.say(msg)
+                return
 
-    
+        # handle role removal option
+        if args[0].lower() == 'remove' and len(args) == 2:
+                if args[1].lower() == 'shattered' or args[1].lower() == 'rekindled':
+                    role = f.Role_Obj(roles, args[1].title())
+                    print(args[1].title())
+                    await self.bot.remove_roles(ctx.message.author, role)
+                    await self.bot.say('\n{}, you have successfully removed the role of {}.'.format(ctx.message.author.mention, role.name))
+                else:
+                    await self.bot.say('\n{}, <{}> is not a valid role. You can remove only **"Shattered** or **"rekindled"**.'.format(ctx.message.author.mention, args[1]))
+                return
+        else:
+            await self.bot.say('{} must include a second argument of either **"rekindled"** or **"resplendent"**.'.format(ctx.message.author.mention))
 
-        if args[0].lower() == 'resplendent':
-                role = f.Role_Obj(roles, 'Resplendent')
-                await self.bot.add_roles(ctx.message.author, role)
-                msg = '\n**{} has upgraded their armor to Resplendent,\nand as such, taken on the role of {}!**'.format(ctx.message.mention, role.mention)
-                await self.bot.send_message(chnl, msg)
-    
 
 
     # GUIDED ROLES COMMANDS~~~
