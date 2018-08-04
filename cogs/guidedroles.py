@@ -63,12 +63,22 @@ class GuidedrolesCog:
                 return
 
         # handle role removal option
+        role = f.Role_Obj(roles, args[1].title())
         if args[0].lower() == 'remove' and len(args) == 2:
-                if args[1].lower() == 'shattered' or args[1].lower() == 'rekindled':
-                    role = f.Role_Obj(roles, args[1].title())
-                    print(args[1].title())
-                    await self.bot.remove_roles(ctx.message.author, role)
-                    await self.bot.say('\n{}, you have successfully removed the role of {}.'.format(ctx.message.author.mention, role.name))
+
+                if args[1].lower() == 'shattered':
+                    if f.Member_Is_Role(ctx.message.author, 'Rekindled'):
+                        await self.bot.remove_roles(ctx.message.author, role)
+                        await self.bot.say('\n{}, you have successfully removed the role of {}.'.format(ctx.message.author.mention, role.name))
+                    else:
+                        await self.bot.say('\n{}, you cannot remove all Solstice of Heroes roles.'.format(ctx.message.author.mention))
+
+                elif args[1].lower() == 'rekindled':
+                    if f.Member_Is_Role(ctx.message.author, 'Shattered'):
+                        await self.bot.remove_roles(ctx.message.author, role)
+                        await self.bot.say('\n{}, you have successfully removed the role of {}.'.format(ctx.message.author.mention, role.name))
+                    else:
+                        await self.bot.say('\n{}, you cannot remove all Solstice of Heroes roles.'.format(ctx.message.author.mention))
                 else:
                     await self.bot.say('\n{}, <{}> is not a valid role. You can remove only **"Shattered** or **"rekindled"**.'.format(ctx.message.author.mention, args[1]))
                 return
