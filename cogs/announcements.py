@@ -3,7 +3,7 @@ from discord.ext import commands
 import sys, asyncio
 import perms, onoff
 sys.path.append('../utils')
-from constants import DESTICON, CHANNELS, RAIDIMG, TRIALSIMG, NFALLIMG, CRUCIMG, CLNSERVERS
+from constants import DESTICON, CHANNELS, RAIDIMG, GAMBITIMG, TRIALSIMG, NFALLIMG, CRUCIMG, CLNSERVERS
 
 
 
@@ -206,6 +206,11 @@ class AnnouncementsCog:
                 embed.add_field(name='__Trials of the Nine__',value='Complete')
                 embed.add_field(name='__Reward__',value='Luminous Engram :crossed_swords: ')
                 embed.set_image(url=TRIALSIMG)
+
+            elif arg.lower() == 'gambit':
+                embed.add_field(name='__Gambit__',value='Complete')
+                embed.add_field(name='__Reward__',value='Luminous Engram :crossed_swords: ')
+                embed.set_image(url=GAMBITIMG)
             
             else:
                 err =' :x:  argument not valid. Must be (raid, nightfall, trials, or crucible).'

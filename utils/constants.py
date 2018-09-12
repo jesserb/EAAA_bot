@@ -108,6 +108,7 @@ RAIDIMG   = 'https://i2.wp.com/www.oneangrygamer.net/wp-content/uploads/2017/09/
 TRIALSIMG = 'https://pbs.twimg.com/media/DJyvzShXoAAQGPR.jpg'
 NFALLIMG  = 'https://cdn.gamerant.com/wp-content/uploads/destiny-2-raid-death-penalty.jpg.optimal.jpg'
 CRUCIMG   = 'https://www.bungie.net/pubassets/98728/07192017_Crucible_Nodes.jpg?cv=3983621215&av=4141671980'
+GAMBITIMG = 'https://sm.ign.com/ign_ap/screenshot/default/destiny-2-forsaken-gambit-gameplay-trailerjpgoptimal_1u3w.jpg'
 
 
 
