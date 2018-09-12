@@ -213,7 +213,7 @@ class AnnouncementsCog:
                 embed.set_image(url=GAMBITIMG)
             
             else:
-                err =' :x:  argument not valid. Must be (raid, nightfall, trials, or crucible).'
+                err =' :x:  argument not valid. Must be (raid, nightfall, trials, gambit, or crucible).'
                 await self.bot.say(ctx.message.author.mention+err)
                 return
 

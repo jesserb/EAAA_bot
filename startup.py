@@ -24,7 +24,8 @@ botType = ''
 if len(sys.argv) > 2:
     print('**ERROR: Too many arguments. program takes at most one.\nexiting... ... ...')
     sys.exit()
-# hadnle argument
+    
+# handle argument
 if len(sys.argv) > 1:
     botType = sys.argv[1]
 else:
